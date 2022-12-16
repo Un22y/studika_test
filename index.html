@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://kit.fontawesome.com/f89a7a780b.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.min.css" />
+    <title>Document</title>
+  </head>
+  <template id="choise-template">
+    <div class="city-select">
+      <span class="city-select-name"></span>
+      <div class="city-select-clear">
+        <svg class="city-select-clear-button" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="#FFFFFF"></path></svg>
+      </div>
+    </div>
+  </template>
+  <body>
+    <header>
+      <div class="container">
+        <div class="head">
+          <button class="mobile-button-icon" id="hamburger">
+            <span class="hamburger"></span>
+          </button>
+          <div class="head-logo">
+            <a href="/" id="main-logo">
+              <svg
+                class="main-logo"
+                width="88"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.851 17.498h2.51c-.174 1.172-.692 2.113-1.555 2.823-.852.71-1.942 1.065-3.27 1.065-1.737 0-3.097-.543-4.08-1.63C.487 18.66 0 17.214 0 15.417c0-1.796.491-3.237 1.473-4.324.982-1.097 2.336-1.645 4.063-1.645 1.263 0 2.315.328 3.157.984.842.645 1.36 1.506 1.554 2.581H7.72c-.27-.946-.998-1.42-2.185-1.42-.993 0-1.753.36-2.282 1.082-.518.71-.777 1.624-.777 2.742 0 1.12.259 2.039.777 2.76.529.71 1.29 1.064 2.282 1.064.615 0 1.123-.15 1.522-.451.41-.312.674-.743.793-1.291zm14.161-7.842v2.114h-3.594v9.407h-2.412V11.77h-3.593V9.656h9.599zm6.678 5.164h.453l2.444-5.164h2.444l-5.536 11.52h-2.412l1.651-3.452-4.273-8.068h2.525l2.703 5.163zm16.474 4.21h1.65V24h-2.346v-2.823h-7.592V24h-2.347v-4.97h1.197c.918-1.624 1.376-3.904 1.376-6.84V9.656h8.062v9.375zm-2.348 0v-7.228h-3.48v1.017c0 2.689-.388 4.76-1.165 6.212h4.645zm6.74-9.374h2.25v8.035h.42l4.161-8.035h3.254v11.52h-2.267v-8.212h-.42l-4.258 8.213h-3.14V9.657zm14.781 11.521V9.657h2.412v4.501h2.735l2.12-4.502h2.494l-2.59 5.6 2.735 5.92h-2.492l-2.25-4.84h-2.752v4.84h-2.412zm21.219 0l-.94-3.114h-4.402l-.94 3.114h-2.379l3.675-11.52h3.74L88 21.176h-2.444zm-3.513-9.213l-1.214 4.001h3.14l-1.214-4.001h-.712zM38.158 0H35.63l-3.035 6.05h2.53L38.157 0z"
+                  fill="#222"
+                ></path>
+              </svg>
+            </a>
+            <div class="city-search-container">
+              <div class="change-city-button" id="city-search-button">
+                <i class="fa fa-location-arrow"></i>
+                <span class="search-choised"></span>
+              </div>
+              <div class="city-search-display closed" id="city-search-window">
+                <div class="city-input-block">
+                  <input
+                    class="city-search"
+                    autocomplete="none"
+                    type="text"
+                    placeholder="Регион, город, населенный пункт"
+                  />
+                    <svg class="city-search-clear"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    >
+                    <path
+                    d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                    fill="#A7A7A7"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="city-selected">
+                </div>
+                <div class="all-city-container">
+                  <div class="all-city-loaded" data-type="cities-list">
+                  </div>
+                </div>
+                <div class="apply-city-container">
+                  <button class="btn save-city" id="save-search-list" type="button">Сохранить</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="header-search" id="main-search">
+            <svg
+              class="head-search-icon"
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M1.7 7.64999C1.7 4.3639 4.36391 1.7 7.65001 1.7C10.9361 1.7 13.6 4.3639 13.6 7.64999C13.6 9.25281 12.9662 10.7076 11.9356 11.7774C11.9063 11.7999 11.8781 11.8246 11.8513 11.8515C11.8245 11.8783 11.7998 11.9065 11.7773 11.9358C10.7075 12.9663 9.25274 13.6 7.65001 13.6C4.36391 13.6 1.7 10.9361 1.7 7.64999ZM12.4249 13.6272C11.1162 14.674 9.45622 15.3 7.65001 15.3C3.42502 15.3 0 11.875 0 7.64999C0 3.42502 3.42502 0 7.65001 0C11.875 0 15.3 3.42502 15.3 7.64999C15.3 9.4563 14.674 11.1164 13.627 12.4251L16.7509 15.549C17.0828 15.8809 17.0828 16.4191 16.7509 16.751C16.4189 17.083 15.8807 17.083 15.5488 16.751L12.4249 13.6272Z"
+                fill="#A7A7A7"
+              ></path>
+            </svg>
+            <input
+              class="head-input"
+              type="text"
+              placeholder="Учебное заведение, специальность или профессия"
+              autocomplete="off"
+            />
+            <svg
+              class="head-search-clear"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                fill="#A7A7A7"
+              ></path>
+            </svg>
+          </div>
+          <div class="header-login" id="main-user">
+            <div class="header-favorite">
+              <a class="head-favorite" href="#">
+                <i class="fa fa-heart"></i>
+                <span class="head-favorite-count">0</span>
+              </a>
+            </div>
+            <a href="#" class="header-login-button">Войти</a>
+          </div>
+        </div>
+        <nav class="header-menu" id="main-menu">
+          <ul
+            class="main-menu"
+            itemscope=""
+            itemtype="http://schema.org/SiteNavigationElement"
+            style="overflow: visible"
+          >
+            <li class="nav-item-more">
+              <a itemprop="url" href="#">Вузы</a>
+            </li>
+            <li class="nav-item-more">
+              <a itemprop="url" href="#">Колледжи</a>
+            </li>
+            <li class="nav-item-more">
+              <a itemprop="url" href="#">Техникумы</a>
+            </li>
+            <li class="nav-item-more">
+              <a itemprop="url" href="#">Училища</a>
+            </li>
+            <li class="nav-item-more">
+              <a itemprop="url" href="#">Специальности</a>
+              <div class="sub-menu-b">
+                <ul class="sub-menu">
+                  <li class="sub-menu-item">
+                    <a itemprop="url"href="#">Высшее</a>
+                  </li>
+                  <li class="sub-menu-item">
+                    <a itemprop="url" href="#">Среднее</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item-more">
+              <a itemprop="url" href="#">Профессии</a>
+            </li>
+            <li class="nav-item-more">
+              <a itemprop="url" href="#">Дистанционное обучение</a>
+              <div class="sub-menu-b">
+                <ul class="sub-menu">
+                  <li class="sub-menu-item">
+                    <a itemprop="url" href="#">Дистанционные колледжи</a>
+                  </li>
+                  <li class="sub-menu-item">
+                    <a itemprop="url" href="#">Дистанционные вузы</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item-more">
+              <a itemprop="url" href="#">Курсы</a>
+            </li>
+            <li class="nav-item-more">
+              <a itemprop="url" href="#">Отзывы</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="mobile-menu-container">
+      <div class="mobile-menu-overlay"></div>
+      <div class="mobile-menu-content">
+        <div class="mobile-menu-block">
+          <div class="mobile-user-info">
+            <a href="" class="blue-btn">Войти</a>
+          </div>
+          <div class="mobile-city">
+            <div class="mobile-city-block">
+              <div class="mobile-city-label">Город или регион</div>
+              <div class="mobile-city-name"></div>
+            </div>
+            <i class="fa fa-location-arrow city-icon"></i>
+          </div>
+          <div class="m-type-tabs">
+            <ul>
+              <li class="type-button active" data-type="menu-hight">Высшее</li>
+              <li class="type-button" data-type="menu-middle">Среднее</li>
+            </ul>
+          </div>
+          <div class="mobile-type-menu">
+            <div class="mobile-menu-box active" id="menu-hight">
+              <ul>
+                <li class="mobile-menu-item"><a href="#">Вузы</a></li>
+                <li class="mobile-menu-item"><a href="#">Специальности</a></li>
+              </ul>
+            </div>
+            <div class="mobile-menu-box closed" id="menu-middle">
+              <ul>
+                <li class="mobile-menu-item"><a href="#">Колледжи</a></li>
+                <li class="mobile-menu-item"><a href="#">Техникумы</a></li>
+                <li class="mobile-menu-item"><a href="#">Училища</a></li>
+                <li class="mobile-menu-item"><a href="#">Специальности</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mobile-main-menu">
+            <ul>
+              <li><a class="mobile-city-label" href="#">Профессии</a></li>
+              <li><a class="mobile-city-label" href="#">Отзывы студентов</a></li>
+              <li><a class="mobile-city-label" href="#">Реклама на сайте</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/js/script.min.js"></script>
+</html>
